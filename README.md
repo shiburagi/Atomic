@@ -1,4 +1,5 @@
 # Atomic-Example
+ [ ![Download](https://api.bintray.com/packages/infideap2/Atomic/Atomic/images/download.svg) ](https://bintray.com/infideap2/Atomic/Atomic/_latestVersion)
 
 ## Including In Your Project
 If you are a Maven user you can easily include the library by specifying it as
