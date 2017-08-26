@@ -17,7 +17,7 @@ a dependency:
 #### Gradle
 ```groovy
 dependencies {
-   compile 'com.infideap.atomic:atomic:1.1.2'
+   compile 'com.infideap.atomic:atomic:0.0.1'
 }
 ```
 
