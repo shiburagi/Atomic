@@ -21,6 +21,15 @@ dependencies {
 }
 ```
 
+if **the gradle unable to sync**, you may include this line in project level gradle,
+```groovy
+repositories {
+ maven{
+   url "https://dl.bintray.com/infideap2/Atomic/"
+ }
+}
+```
+
 **or**,
 you can include it by **download this project** and **import /atomic** as **module**.
 
