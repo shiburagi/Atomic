@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+ext{
+    PUBLISH_GROUP_ID= 'com.infideap.atomic'
+    PUBLISH_ARTIFACT_ID= 'atomic'
+    PUBLISH_VERSION= '0.0.1'
+}
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+    }
+}
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/' +
+        'master/android-release-aar.gradle'
+dependencies {
+    //    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.3.1'
+
+    testCompile 'junit:junit:4.12'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+
+}
