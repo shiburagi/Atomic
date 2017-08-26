@@ -33,6 +33,26 @@ repositories {
 **or**,
 you can include it by **download this project** and **import /atomic** as **module**.
 
+## How to use
+```java
+Atom.with(LoginActivity.this)
+    .load("https://reqres.in/api/login")
+    .setJsonPojoBody(loginRequest)
+    .as(LoginResponse.class)
+    .setCallback(new FutureCallback<LoginResponse>() {
+        @Override
+        public void onCompleted(Exception e, LoginResponse result) {
+            if (e != null) {
+                e.printStackTrace();
+            } else if (result.token != null) {
+                Snackbar.make(v, "Pass : " + result.token, Snackbar.LENGTH_LONG).show();
+            } else if (result.error != null) {
+                Snackbar.make(v, "Fail : " + result.error, Snackbar.LENGTH_LONG).show();
+            }
+        }
+    });
+```
+
 ## Contact
 For any enquiries, please send an email to tr32010@gmail.com. 
 
