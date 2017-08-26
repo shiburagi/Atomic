@@ -1,4 +1,4 @@
-# Atomic-Example
+# Atomic
  [ ![Download](https://api.bintray.com/packages/infideap2/Atomic/Atomic/images/download.svg) ](https://bintray.com/infideap2/Atomic/Atomic/_latestVersion)
 
 ## Including In Your Project
