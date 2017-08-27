@@ -98,7 +98,7 @@ Atom.with(LoginActivity.this)
     //Optional: Upload Progress
     .uploadProgress(new ProgressCallback() {
         @Override
-        public void onProgress(long downloaded, long total) {
+        public void onProgress(long uploaded, long total) {
             
         }
     })
