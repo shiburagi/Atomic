@@ -26,4 +26,9 @@ public class Atom {
     public static OkHttpClient client() {
         return A.globalClient;
     }
+    public static void setClient(OkHttpClient client) {
+        A.globalClient = client;
+    }
+
+
 }

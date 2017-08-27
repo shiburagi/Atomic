@@ -3,6 +3,7 @@ package com.infideap.atomexample;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 
@@ -18,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText usernameEditText = (EditText) findViewById(R.id.editText_username);
         final EditText passwordEditText = (EditText) findViewById(R.id.editText_password);
+        passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         findViewById(R.id.button_login).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                                 } else if (result.token != null) {
                                     Snackbar.make(v, "Pass : " + result.token, Snackbar.LENGTH_LONG).show();
                                 } else if (result.error != null) {
-                                    Snackbar.make(v, "Fail : " +result.error, Snackbar.LENGTH_LONG).show();
+                                    Snackbar.make(v, "Fail : " + result.error, Snackbar.LENGTH_LONG).show();
                                 }
                             }
                         });
