@@ -34,6 +34,8 @@ repositories {
 you can include it by **download this project** and **import /atomic** as **module**.
 
 ## How to use
+
+**POST**
 ```java
 Atom.with(LoginActivity.this)
     .load("https://reqres.in/api/login")
@@ -49,6 +51,59 @@ Atom.with(LoginActivity.this)
             } else if (result.error != null) {
                 Snackbar.make(v, "Fail : " + result.error, Snackbar.LENGTH_LONG).show();
             }
+        }
+    });
+```
+
+**GET**
+```java
+Atom.with(LoginActivity.this)
+    .load("https://reqres.in//api/users/2")
+    .as(UserResponse.class)
+    .setCallback(new FutureCallback<LoginResponse>() {
+        @Override
+        public void onCompleted(Exception e, UserResponse result) {
+            if (e != null) {
+                e.printStackTrace();
+            } else if (result.first_name != null) {
+                Snackbar.make(v, "Pass : " + result.first_name, Snackbar.LENGTH_LONG).show();
+            } 
+        }
+    });
+```
+
+**Other**, just add method after url on load()
+```java
+Atom.with(LoginActivity.this)
+    .load("https://reqres.in//api/users/2", Atom.DELETE_METHOD)
+    .asString()
+    .setCallback(new FutureCallback<String>() {
+        @Override
+        public void onCompleted(Exception e, String result) {
+            if (e != null) {
+                e.printStackTrace();
+            } else if (result != null) {
+                Snackbar.make(v, "Pass : " + result, Snackbar.LENGTH_LONG).show();
+            } 
+        }
+    });
+```
+
+**Download File**
+```java
+Atom.with(LoginActivity.this)
+    .load("https://developer.android.com/_static/66ebbcad58/images/android/touchicon-180.png")
+    .progress(new ProgressCallback() {
+        @Override
+        public void onProgress(long downloaded, long total) {
+            
+        }
+    })
+    .write(new File("android.png"))
+    .setCallback(new FutureCallback<File>() {
+        @Override
+        public void onCompleted(Exception e, File result) {
+            
         }
     });
 ```
