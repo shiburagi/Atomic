@@ -89,6 +89,29 @@ Atom.with(LoginActivity.this)
     });
 ```
 
+**Upload File**
+```java
+Atom.with(LoginActivity.this)
+    .load("https://reqres.in/api/user/2")
+    .setJsonPojoBody(userRequest)
+    .setMultipartFile("uploadFile", new File("video.mp4"))
+    .uploadProgress(new ProgressCallback() {
+        @Override
+        public void onProgress(long downloaded, long total) {
+            
+        }
+    })
+    .as(UserResponse.class)
+    .setCallback(new FutureCallback<UserResponse>() {
+        @Override
+        public void onCompleted(Exception e, UserResponse result) {
+            if (e != null) {
+                e.printStackTrace();
+            } 
+        }
+    });
+```
+
 **Download File**
 ```java
 Atom.with(LoginActivity.this)
