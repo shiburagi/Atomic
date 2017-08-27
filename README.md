@@ -58,7 +58,7 @@ Atom.with(LoginActivity.this)
 **GET**
 ```java
 Atom.with(LoginActivity.this)
-    .load("https://reqres.in//api/users/2")
+    .load("https://reqres.in/api/users/2")
     .as(UserResponse.class)
     .setCallback(new FutureCallback<LoginResponse>() {
         @Override
@@ -75,7 +75,7 @@ Atom.with(LoginActivity.this)
 **Other**, just add method after url on load()
 ```java
 Atom.with(LoginActivity.this)
-    .load("https://reqres.in//api/users/2", Atom.DELETE_METHOD)
+    .load("https://reqres.in/api/users/2", Atom.DELETE_METHOD)
     .asString()
     .setCallback(new FutureCallback<String>() {
         @Override
