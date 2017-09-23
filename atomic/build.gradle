@@ -2,14 +2,14 @@ apply plugin: 'com.android.library'
 ext{
     PUBLISH_GROUP_ID= 'com.infideap.atomic'
     PUBLISH_ARTIFACT_ID= 'atomic'
-    PUBLISH_VERSION= '0.0.2'
+    PUBLISH_VERSION= '0.0.3'
 }
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 9
         targetSdkVersion 25
     }
 }
