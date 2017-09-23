@@ -95,9 +95,10 @@ Atom.with(LoginActivity.this)
     .load("https://reqres.in/api/user/2")
     .setJsonPojoBody(userRequest)
     .setMultipartFile("uploadFile", new File("video.mp4"))
+    //Optional: Upload Progress
     .uploadProgress(new ProgressCallback() {
         @Override
-        public void onProgress(long downloaded, long total) {
+        public void onProgress(long uploaded, long total) {
             
         }
     })
@@ -116,6 +117,7 @@ Atom.with(LoginActivity.this)
 ```java
 Atom.with(LoginActivity.this)
     .load("https://developer.android.com/_static/66ebbcad58/images/android/touchicon-180.png")
+    //Optional: Progress
     .progress(new ProgressCallback() {
         @Override
         public void onProgress(long downloaded, long total) {
@@ -131,6 +133,7 @@ Atom.with(LoginActivity.this)
     });
 ```
 
+## Advance
 **Customize**
 ```java
 OkHttpClient client =new OkHttpClient.Builder().addInterceptor(new Interceptor() {
