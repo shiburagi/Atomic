@@ -1,6 +1,8 @@
 # Atomic
  [ ![Download](https://api.bintray.com/packages/infideap2/Atomic/Atomic/images/download.svg) ](https://bintray.com/infideap2/Atomic/Atomic/_latestVersion)
 
+An android restful api/networking library using okhttp library as backbone.
+
 Android 9.0+ support
 
 ## Including In Your Project
