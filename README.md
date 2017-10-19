@@ -1,5 +1,7 @@
 # Atomic
  [ ![Download](https://api.bintray.com/packages/infideap2/Atomic/Atomic/images/download.svg) ](https://bintray.com/infideap2/Atomic/Atomic/_latestVersion)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Atomic-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6344)
+Close
 
 An android restful api/networking library using okhttp library as backbone.
 
