@@ -140,6 +140,30 @@ Atom.with(LoginActivity.this)
 ```
 
 ## Advance
+**Plain String**
+```java
+Atom.with(LoginActivity.this)
+    .load("https://reqres.in/api/users/2")
+    .asString()
+    .setCallback(new FutureCallback<String>() {
+        @Override
+        public void onCompleted(Exception e, String result) {
+            if (e != null) {
+                e.printStackTrace();
+            } else if (result!= null) {
+                Snackbar.make(v, "Pass : " + result, Snackbar.LENGTH_LONG).show();
+            } 
+        }
+    });
+```
+**Direct call without callback (must call in Thread/Service/AsyncTask)**
+```java
+String body = Atom.with(LoginActivity.this)
+    .load("https://reqres.in/api/users/2")
+    .asString()
+    .get();
+```
+
 **Customize**
 ```java
 OkHttpClient client =new OkHttpClient.Builder().addInterceptor(new Interceptor() {
