@@ -1,5 +1,11 @@
 # Atomic
  [ ![Download](https://api.bintray.com/packages/infideap2/Atomic/Atomic/images/download.svg) ](https://bintray.com/infideap2/Atomic/Atomic/_latestVersion)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Atomic-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6344)
+
+
+An android restful api/networking library using okhttp library as backbone.
+
+Android 9.0+ support
 
 ## Including In Your Project
 If you are a Maven user you can easily include the library by specifying it as
@@ -10,14 +16,14 @@ a dependency:
 <dependency>
   <groupId>com.infideap.atomic</groupId>
   <artifactId>atomic</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.5</version>
   <type>pom</type>
 </dependency>
 ```
 #### Gradle
 ```groovy
 dependencies {
-   compile 'com.infideap.atomic:atomic:0.0.2'
+   compile 'com.infideap.atomic:atomic:0.0.5'
 }
 ```
 
@@ -134,6 +140,56 @@ Atom.with(LoginActivity.this)
 ```
 
 ## Advance
+**Plain String**
+```java
+Atom.with(LoginActivity.this)
+    .load("https://reqres.in/api/users/2")
+    .asString()
+    .setCallback(new FutureCallback<String>() {
+        @Override
+        public void onCompleted(Exception e, String result) {
+            if (e != null) {
+                e.printStackTrace();
+            } else if (result!= null) {
+                Snackbar.make(v, "Pass : " + result, Snackbar.LENGTH_LONG).show();
+            } 
+        }
+    });
+```
+**Direct call without callback (must call in Thread/Service/AsyncTask)**
+```java
+String body = Atom.with(LoginActivity.this)
+    .load("https://reqres.in/api/users/2")
+    .asString()
+    .get();
+```
+**Access OKHttp Response (must call in Thread/Service/AsyncTask)**
+```java
+Response body = Atom.with(LoginActivity.this)
+    .load("https://reqres.in/api/users/2")
+    .execute();
+```
+
+**Access OKHttp Response**
+```java
+Atom.with(LoginActivity.this)
+    .load("https://reqres.in/api/login")
+    .setJsonPojoBody(loginRequest)
+    .as(LoginResponse.class)
+    .setCallback(new ResponseFutureCallback<LoginResponse>() {
+        @Override
+        public void onCompleted(Exception e, LoginResponse result, Response response) {
+            if (e != null) {
+                e.printStackTrace();
+            } else if (result.token != null) {
+                Snackbar.make(v, "Pass : " + result.token, Snackbar.LENGTH_LONG).show();
+            } else if (result.error != null) {
+                Snackbar.make(v, "Fail : " + result.error, Snackbar.LENGTH_LONG).show();
+            }
+        }
+    });
+```
+
 **Customize**
 ```java
 OkHttpClient client =new OkHttpClient.Builder().addInterceptor(new Interceptor() {
