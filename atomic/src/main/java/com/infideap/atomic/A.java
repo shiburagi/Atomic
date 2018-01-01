@@ -118,6 +118,12 @@ public class A {
         return c;
     }
 
+    public <T> Response execute(Class<T> t) throws IOException {
+        AtomRequest<T> z = new AtomRequest<T>(this, t);
+        isString = false;
+        return z.execute();
+    }
+
 
     public List<Part> getParts() {
         return parts;
