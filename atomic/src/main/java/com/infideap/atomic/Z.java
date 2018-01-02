@@ -2,6 +2,7 @@ package com.infideap.atomic;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Pair;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -17,21 +18,21 @@ import okhttp3.Response;
 /**
  * Created by Shiburagi on 20/10/2016.
  */
-public class AtomRequest<T> {
-    private static final String TAG = AtomRequest.class.getSimpleName();
+public class Z<T> {
+    private static final String TAG = Z.class.getSimpleName();
     private final A a;
     private final Class<?> aClass;
 
-    protected T t = null;
+    private T t = null;
 
-    AtomRequest(A a, Class<T> aClass) {
+    Z(A a, Class<T> aClass) {
         this.a = a;
         this.aClass = aClass;
 
         a.createClient();
     }
 
-    AtomRequest(A a, Type t) {
+    Z(A a, Type t) {
         this.a = a;
         this.aClass = t.getClass();
 
@@ -49,14 +50,13 @@ public class AtomRequest<T> {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        onCompleted(e, t, null);
+                        callback.onCompleted(e, t);
                     }
                 });
             }
 
-
             @Override
-            public void onResponse(Call call, final Response response) {
+            public void onResponse(Call call, Response response) {
                 Exception exception;
                 try {
                     parse(response);
@@ -69,28 +69,24 @@ public class AtomRequest<T> {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        onCompleted(e, t, response);
+                        callback.onCompleted(e, t);
                     }
                 });
             }
-
-            private void onCompleted(Exception e, T t, Response response) {
-                if (callback instanceof ResponseFutureCallback) {
-                    ((ResponseFutureCallback) callback).onCompleted(e, t, response);
-                } else
-                    callback.onCompleted(e, t);
-            }
-
-
         });
 
     }
 
-    public T get() throws IOException {
+    public T get() throws Exception {
         return parse(prepare().execute());
     }
 
-    protected T parse(Response response) throws IOException {
+    public Pair<T, Response> getWithResponse() throws Exception {
+        Response response = prepare().execute();
+        return new Pair<>(parse(response), response);
+    }
+
+    private T parse(Response response) throws Exception {
         if (a.isString) {
             t = (T) response.body().string();
         } else {

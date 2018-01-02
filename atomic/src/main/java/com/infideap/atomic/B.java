@@ -37,7 +37,7 @@ public class B<T> extends AtomRequest<File> {
     }
 
     @Override
-    public File get() throws Exception {
+    public File get() throws IOException {
         return super.get();
     }
 }
