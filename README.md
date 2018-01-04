@@ -16,14 +16,14 @@ a dependency:
 <dependency>
   <groupId>com.infideap.atomic</groupId>
   <artifactId>atomic</artifactId>
-  <version>0.0.6</version>
+  <version>0.0.7</version>
   <type>pom</type>
 </dependency>
 ```
 #### Gradle
 ```groovy
 dependencies {
-   compile 'com.infideap.atomic:atomic:0.0.6'
+   compile 'com.infideap.atomic:atomic:0.0.7'
 }
 ```
 
