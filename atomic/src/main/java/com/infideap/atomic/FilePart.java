@@ -7,7 +7,16 @@ import java.io.File;
  */
 
 public class FilePart extends Part {
+    private File file;
+
     public FilePart(String s, File file) {
-        super(s, file);
+        super(s, file.getName());
+
+        this.file = file;
     }
+
+    public File getFile() {
+        return file;
+    }
+
 }

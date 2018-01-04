@@ -1,7 +1,5 @@
 package com.infideap.atomic;
 
-import java.io.File;
-
 /**
  * Created by Shiburagi on 20/10/2016.
  */
@@ -9,12 +7,10 @@ import java.io.File;
 public class Part {
     private String key;
     private String name;
-    private File file;
 
-    Part(String s, File file) {
-        key = s;
-        this.file = file;
-        name = file.getAbsolutePath();
+    public Part(String key, String name) {
+        this.key = name;
+        this.name = name;
     }
 
     public String getKey() {
@@ -25,7 +21,4 @@ public class Part {
         return name;
     }
 
-    public File getFile() {
-        return file;
-    }
 }

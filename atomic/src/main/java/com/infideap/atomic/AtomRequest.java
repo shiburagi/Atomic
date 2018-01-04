@@ -115,10 +115,15 @@ public class AtomRequest<T> {
                 for (Part part : a.getParts()) {
 
                     MediaType mediaType = MediaType.parse("application/octet-stream");
-                    if (part.getFile() == null)
-                        continue;
-                    RequestBody body = RequestBody.create(mediaType, part.getFile());
-                    builder = builder.addFormDataPart(part.getKey(), part.getFile().getName(), body);
+                    if (part instanceof FilePart) {
+                        FilePart filePart = (FilePart) part;
+                        if (filePart.getFile() == null)
+                            continue;
+                        RequestBody body = RequestBody.create(mediaType, filePart.getFile());
+                        builder = builder.addFormDataPart(part.getKey(), filePart.getName(), body);
+                    }else{
+                        builder = builder.addFormDataPart(part.getKey(), part.getName());
+                    }
                 }
                 if (a.getRequestBody() != null)
                     builder.addPart(requestBody);

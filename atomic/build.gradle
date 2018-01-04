@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 ext{
     PUBLISH_GROUP_ID= 'com.infideap.atomic'
     PUBLISH_ARTIFACT_ID= 'atomic'
-    PUBLISH_VERSION= '0.0.6'
+    PUBLISH_VERSION= '0.0.7'
 }
 android {
     compileSdkVersion 26
@@ -19,8 +19,8 @@ dependencies {
     //    compile fileTree(include: ['*.jar'], dir: 'libs')
 
     testCompile 'junit:junit:4.12'
-    compile 'com.squareup.okhttp3:okhttp:3.8.0'
-    compile 'com.google.code.gson:gson:2.8.2'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
 }

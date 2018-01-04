@@ -87,6 +87,11 @@ public class A {
         return this;
     }
 
+    public A setBody(String request) {
+        this.requestBody = new StringBuilder(request);
+        return this;
+    }
+
     public StringBuilder getRequestBody() {
         return requestBody;
     }
@@ -139,6 +144,15 @@ public class A {
         return this;
     }
 
+    public A setMultipart(String key, String name) {
+        if (method == null) {
+            this.method = Atom.POST_METHOD;
+        }
+        parts.add(new Part(key, name));
+
+        return this;
+    }
+
     public A setHeader(Headers headers) {
         this.headers = headers;
         return this;
@@ -154,7 +168,6 @@ public class A {
     public A setReadTimeout(long timeout, TimeUnit unit) {
         readTimeout = timeout;
         readTimeUnit = unit;
-
         return this;
     }
 
