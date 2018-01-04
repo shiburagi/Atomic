@@ -46,6 +46,7 @@ you can include it by **download this project** and **import /atomic** as **modu
 Atom.with(LoginActivity.this)
     .load("https://reqres.in/api/login")
     .setJsonPojoBody(loginRequest)
+    //.setBody(requestString) //Plain String
     .as(LoginResponse.class)
     .setCallback(new FutureCallback<LoginResponse>() {
         @Override
@@ -153,6 +154,26 @@ Atom.with(LoginActivity.this)
             } else if (result!= null) {
                 Snackbar.make(v, "Pass : " + result, Snackbar.LENGTH_LONG).show();
             } 
+        }
+    });
+```
+**Form Data**
+```java
+Atom.with(LoginActivity.this)
+    .load("https://reqres.in/api/login")
+    .setMultipart("Key1","Value1")
+    .setMultipart("Key2","Value2")
+    .as(LoginResponse.class)
+    .setCallback(new FutureCallback<LoginResponse>() {
+        @Override
+        public void onCompleted(Exception e, LoginResponse result) {
+            if (e != null) {
+                e.printStackTrace();
+            } else if (result.token != null) {
+                Snackbar.make(v, "Pass : " + result.token, Snackbar.LENGTH_LONG).show();
+            } else if (result.error != null) {
+                Snackbar.make(v, "Fail : " + result.error, Snackbar.LENGTH_LONG).show();
+            }
         }
     });
 ```
