@@ -1,6 +1,7 @@
 package com.infideap.atomic;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -31,6 +32,7 @@ public class A {
     private TimeUnit connectTimeUnit = TimeUnit.MINUTES;
     private TimeUnit readTimeUnit = TimeUnit.MINUTES;
 
+    private List<Interceptor> interceptors;
 
     static OkHttpClient globalClient;
     OkHttpClient client;
@@ -51,12 +53,11 @@ public class A {
     String method;
     Request request;
 
-    public A(Context context) {
+    public A(Context context, List<Interceptor> interceptors) {
         this.context = context;
+        this.interceptors = interceptors;
         GsonBuilder builder = new GsonBuilder();
         gson = builder.create();
-
-
     }
 
     public A load(String url) {
@@ -91,6 +92,7 @@ public class A {
         this.requestBody = new StringBuilder(request);
         return this;
     }
+
 
     public StringBuilder getRequestBody() {
         return requestBody;
@@ -176,7 +178,7 @@ public class A {
                 .connectTimeout(connectTimeout, connectTimeUnit)
                 .readTimeout(readTimeout, readTimeUnit)
                 .addNetworkInterceptor(new Interceptor() {
-
+                    @NonNull
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Response originalResponse = chain.proceed(chain.request());
@@ -188,13 +190,25 @@ public class A {
                                 .build();
                     }
                 });
+
+        for(Interceptor interceptor: interceptors){
+            builder.addInterceptor(interceptor);
+        }
+
         if (Atom.LOG_BODY) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-            logging.setLevel(Atom.LOG_LEVEL);
+            logging.level(Atom.LOG_LEVEL);
             builder.addInterceptor(logging);
         }
         client = builder.build();
     }
 
+    public void addInterceptor(Interceptor interceptor){
+        interceptors.add(interceptor);
+    }
+
+    public void removeInterceptor(Interceptor interceptor){
+        interceptors.remove(interceptor);
+    }
 }
 
