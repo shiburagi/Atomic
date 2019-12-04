@@ -1,24 +1,60 @@
+apply plugin: 'com.novoda.bintray-release' // must be applied after your artifact generating plugin (eg. java / com.android.library)
 apply plugin: 'com.android.library'
+
 ext{
     PUBLISH_GROUP_ID= 'com.infideap.atomic'
     PUBLISH_ARTIFACT_ID= 'atomic'
-    PUBLISH_VERSION= '0.1.1'
+    PUBLISH_VERSION= '1.0.0'
 }
+
 android {
-    compileSdkVersion 26
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 26
+        targetSdkVersion 28
     }
 }
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/' +
         'master/android-release-aar.gradle'
 dependencies {
     testImplementation 'junit:junit:4.12'
-    implementation 'com.squareup.okhttp3:okhttp:4.2.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.0'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+}
+
+
+
+publish {
+    def groupProjectID = 'com.infideap.atomic'
+    def artifactProjectID = 'atomic'
+    def publishVersionID = '1.0.1'
+
+    userOrg = 'infideap2'
+    repoName = "Atomic"
+    uploadName = "Atomic"
+    groupId = groupProjectID
+    artifactId = artifactProjectID
+    publishVersion = publishVersionID
+    desc = ''
+    website = 'https://github.com/shiburagi/Atomic'
+//    publishing {
+//        publications {
+//            MyPub(MavenPublication) {
+//                groupId groupProjectID
+//                artifactId artifactProjectID
+//                version publishVersionID
+//
+//                //don't forget to add bundleRelease
+//                artifact bundleRelease
+//
+//            }
+//        }
+//    }
+//
+//    //Step 3: don't forget to add your custom publication
+//    publications = ['MyPub']
 }
