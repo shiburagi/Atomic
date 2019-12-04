@@ -119,7 +119,7 @@ class A(var context: Context, private val interceptors: MutableList<Interceptor>
         if (method == null) {
             method = Atom.Companion.POST_METHOD
         }
-        parts.add(Part(key, name))
+        parts.add(Part(key?:"", name))
         return this
     }
 
